@@ -1,7 +1,13 @@
 package br.com.williamsouza.crud.api;
 
+import org.hibernate.validator.constraints.br.CPF;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+
+import com.mongodb.lang.NonNull;
+
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
 
 @Document
 public class Cliente {
@@ -22,6 +28,7 @@ public class Cliente {
         this.id = id;
     }
 
+    @NotEmpty(message = "nome não pode ser vazio!")
     public String getNome() {
         return nome;
     }
@@ -30,6 +37,8 @@ public class Cliente {
         this.nome = nome;
     }
 
+    @NotEmpty(message = "e-mail não pode ser vazio!")
+    @Email(message = "e-mail invalido!")
     public String getEmail() {
         return email;
     }
@@ -38,6 +47,8 @@ public class Cliente {
         this.email = email;
     }
 
+    @NotEmpty(message = "cpf não pode ser vazio!")
+    @CPF(message = "cpf invalido!")
     public String getCpf() {
         return cpf;
     }
